@@ -1,0 +1,13 @@
+<h3>Model Component</h3>
+<br>
+<p>model works! Inside model component diagram, inspector, pal components are there. below button set basic model parameters. You can save and use it</p>
+
+<button  class="button button2" (click)="basicModel()">Display Basic template (model comp)</button>
+
+<app-pal></app-pal>
+<app-diagram  [modelgetindiagram]="parentmodel" (nodeClicked)=setSelectedNode($event)></app-diagram>
+<button  class="button button2"(click)="saveInfo()">save model into Json (model comp)</button>
+<button class="button button2" (click)="removeInfo()">delete model (model comp)</button>
+
+
+<app-inspector [selectedNode]='selectedNode'[parentmodel]='parentmodel'></app-inspector>

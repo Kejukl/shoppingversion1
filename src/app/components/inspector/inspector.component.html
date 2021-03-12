@@ -1,0 +1,24 @@
+<h4 *ngIf="selectedNode" >Inspect item </h4>
+<form *ngIf="selectedNode && selectedNode.data.key && selectedNode.data.key != 'ShopFloor'" (ngSubmit)="onCommitForm()">
+     <span>position X: {{selectedNode.part.location.x}} cm</span> <br>
+     <span>position Y: {{selectedNode.data.loc.y}} cm</span> <br>
+     
+    name: <input name="key" [(ngModel)]="data.key" placeholder="{{selectedNode.data.key}}"> <br>
+    color: <input name="color" [(ngModel)]="data.color" placeholder="{{selectedNode.data.color}}" /><br>
+    width: <input name="w" [(ngModel)]="data.width" placeholder="{{selectedNode.data.w}}" /> cm<br>
+    height: <input name="h" [(ngModel)]="data.height" placeholder="{{selectedNode.data.h}}" />cm<br>
+    angle: <input name="angle" [(ngModel)]="data.angle" placeholder="{{selectedNode.data.angle}}" />cm<br>
+    Area:{{selectedNode.data.w*selectedNode.data.h/10000}} m<sup>2</sup><br>
+
+    <button type="submit">change item details</button>
+  </form>
+
+  <form *ngIf="selectedNode && selectedNode.data.key == 'ShopFloor'" (ngSubmit)="onCommitForm2()">
+    Shop Floor size: <input name="size" [(ngModel)]="shopSize" placeholder="{{selectedNode.data.size}}"> <br>
+    <br>
+   <button type="submit">change floor size</button>
+ </form>
+
+
+
+
