@@ -5,7 +5,7 @@
 <button  class="button button2" (click)="basicModel()">Display Basic template (model comp)</button>
 
 <app-pal></app-pal>
-<app-diagram  [modelgetindiagram]="parentmodel" (nodeClicked)=setSelectedNode($event)></app-diagram>
+<app-diagram  [parentmodel]="parentmodel" (nodeClicked)=setSelectedNode($event)></app-diagram>
 <button  class="button button2"(click)="saveInfo()">save model into Json (model comp)</button>
 <button class="button button2" (click)="removeInfo()">delete model (model comp)</button>
 

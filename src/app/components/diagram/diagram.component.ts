@@ -10,9 +10,9 @@ const $=go.GraphObject.make
   styleUrls: ['./diagram.component.css']
 })
 export class DiagramComponent implements OnInit {
-  public diagram: go.Diagram = null;
+  public diagram: go.Diagram;
 
-  @Input() modelgetindiagram: go.GraphLinksModel; //binded with parentmodel
+  @Input() parentmodel: go.GraphLinksModel; //binded with parentmodel
 
   @Output()
   public nodeClicked=new EventEmitter()
@@ -21,14 +21,13 @@ export class DiagramComponent implements OnInit {
   constructor() { }
 
   ngOnInit(){
-    
   }
 
   ngAfterViewInit(): void {
-    console.log('line 27, diagram component. Checking the model at the start')
-    console.log('line 28, this.modelgetindiagram',this.modelgetindiagram)
-    //
     this.diagram = $(go.Diagram, 'myDiagramDiv')
+    console.log('line 27, diagram component. Checking the model at the start')
+    console.log('line 28, this.parentmodel',this.parentmodel)
+    //
     this.diagram.grid.visible = true;
     this.diagram.undoManager.isEnabled = true;
     this.diagram.grid.gridCellSize = new go.Size(10, 10);
@@ -63,7 +62,7 @@ export class DiagramComponent implements OnInit {
     $(go.Shape, new go.Binding("figure", "fig"), {name:"SHAPE"},new go.Binding("fill", "color"),{strokeWidth: 1,stroke: go.Brush.darken("transparent")}),
     $(go.TextBlock,{ margin: 3 },new go.Binding("text", "key"),{stroke:"darkslateblue"}),
     );
-    this.diagram.model=this.modelgetindiagram
+    this.diagram.model=this.parentmodel
     this.diagram.allowDrop = true;
     //
     this.diagram.addDiagramListener('ObjectSingleClicked', (e) => {
@@ -115,9 +114,9 @@ export class DiagramComponent implements OnInit {
       console.log(node.containingGroup)
       console.log(node.data)
       console.log(this.diagram.model.nodeDataArray)
-      this.modelgetindiagram.startTransaction();
-      this.modelgetindiagram.set(node.data, 'group', "ShopFloor");
-      this.modelgetindiagram.commitTransaction();
+      this.parentmodel.startTransaction();
+      this.parentmodel.set(node.data, 'group', "ShopFloor");
+      this.parentmodel.commitTransaction();
       this.nodeClicked.emit(node);
       
     });
@@ -137,7 +136,7 @@ export class DiagramComponent implements OnInit {
 
   ngOnChanges() {
     if (this.diagram) {
-      this.diagram.model=this.modelgetindiagram
+      this.diagram.model=this.parentmodel
     }
 
   }

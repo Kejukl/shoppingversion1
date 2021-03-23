@@ -28,6 +28,8 @@ export class ModelComponent implements OnInit {
     //this.parentdata='I am from parent'
     if (localStorage.getItem('savedModel')) {
       this.parentmodel = go.Model.fromJson(localStorage.getItem('savedModel'));
+    } else {
+      this.basicModel()
     }
   }
   public setSelectedNode(node){

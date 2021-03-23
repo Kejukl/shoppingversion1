@@ -1,4 +1,4 @@
-<h4 *ngIf="selectedNode" >Inspect item </h4>
+<h4  >Inspect item </h4>
 <form *ngIf="selectedNode && selectedNode.data.key && selectedNode.data.key != 'ShopFloor'" (ngSubmit)="onCommitForm()">
      <span>position X: {{selectedNode.part.location.x}} cm</span> <br>
      <span>position Y: {{selectedNode.data.loc.y}} cm</span> <br>

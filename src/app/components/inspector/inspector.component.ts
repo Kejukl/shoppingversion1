@@ -22,6 +22,7 @@ export class InspectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   public onCommitForm() {
