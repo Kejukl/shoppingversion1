@@ -30,7 +30,7 @@ export class DiagramComponent implements OnInit {
     //
     this.diagram.grid.visible = true;
     this.diagram.undoManager.isEnabled = true;
-    this.diagram.grid.gridCellSize = new go.Size(10, 10);
+    this.diagram.grid.gridCellSize = new go.Size(10,10);
     this.diagram.toolManager.draggingTool.isGridSnapEnabled = true;
 
     this.diagram.groupTemplate =
@@ -41,7 +41,7 @@ export class DiagramComponent implements OnInit {
         },
       new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
       $(go.TextBlock,  // group title
-        { font: "Bold 12pt Sans-Serif" },
+        { font: "Bold 20 pt Sans-Serif" },
         new go.Binding("text", "key")),
       $(go.Shape,  // using a Shape instead of a Placeholder
         { name: "PH",
@@ -52,15 +52,24 @@ export class DiagramComponent implements OnInit {
     this.diagram.nodeTemplate =
     $(go.Node, 
       "Auto", // the Shape automatically fits around the TextBlock
-    { resizable: true},{name:"SHAPE1"},
+    { resizable: true, resizeObjectName:"SHAPE1"},
+    {name:"SHAPE1"},
+    new go.Binding("height", "h").makeTwoWay(),
+    new go.Binding("width", "w").makeTwoWay(),
     { rotatable : true,rotateObjectName:"SHAPE1"},
     //new go.Binding("resizable","resize"),
     new go.Binding("location", "loc").makeTwoWay(),
-    new go.Binding("height", "h").makeTwoWay(),
-    new go.Binding("width", "w").makeTwoWay(),
+    //new go.Binding("height", "h").makeTwoWay(),
+    //new go.Binding("width", "w").makeTwoWay(),
     new go.Binding("angle","angle").makeTwoWay(),
-    $(go.Shape, new go.Binding("figure", "fig"), {name:"SHAPE"},new go.Binding("fill", "color"),{strokeWidth: 1,stroke: go.Brush.darken("transparent")}),
-    $(go.TextBlock,{ margin: 3 },new go.Binding("text", "key"),{stroke:"darkslateblue"}),
+    $(go.Shape, new go.Binding("figure", "fig"), 
+
+    {name:"SHAPE"},new go.Binding("fill", "color"),{strokeWidth: 1,stroke: go.Brush.darken("transparent")}),
+    $(go.TextBlock,{
+    //alignment: go.Spot.TopCenter, 
+    //alignmentFocus: go.Spot.TopCenter
+  },
+    new go.Binding("text", "key"),{stroke:"darkslateblue"}),
     );
     this.diagram.model=this.parentmodel
     this.diagram.allowDrop = true;
@@ -87,6 +96,7 @@ export class DiagramComponent implements OnInit {
         console.log("node.part.height",node.part.height),
         console.log("node.part.angle",node.part.angle),
         console.log("node.data.h",node.data.h)
+        console.log("node.part",node.part)
       }
   
     });
@@ -108,9 +118,27 @@ export class DiagramComponent implements OnInit {
     this.diagram.addDiagramListener('ExternalObjectsDropped', (e) => {
       console.log('Add diagram ext')
       const node = this.diagram.selection.first();
-      node.part.width=50
-      node.part.height=50
-      node.data.h=node.part.width
+      //node.part.width=50 this statement set the outer panel size.  you can set like node.data.h+12 
+      //node.part.height=50
+      node.data.h=100
+      node.data.w=50
+      console.log(node.containingGroup)
+      console.log(node.data)
+      console.log(this.diagram.model.nodeDataArray)
+      this.parentmodel.startTransaction();
+      this.parentmodel.set(node.data, 'group', "ShopFloor");
+      this.parentmodel.commitTransaction();
+      this.nodeClicked.emit(node);
+      
+    });
+
+    this.diagram.addDiagramListener('SelectionCopied', (e) => {
+      console.log('Add diagram copy',e)
+      const node = this.diagram.selection.first();
+      //node.part.width=50 this statement set the outer panel size.  you can set like node.data.h+12 
+      //node.part.height=50
+      node.data.h=100
+      node.data.w=50
       console.log(node.containingGroup)
       console.log(node.data)
       console.log(this.diagram.model.nodeDataArray)
@@ -140,6 +168,8 @@ export class DiagramComponent implements OnInit {
     }
 
   }
+
+  
 
 
 

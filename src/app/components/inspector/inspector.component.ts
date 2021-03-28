@@ -51,6 +51,7 @@ export class InspectorComponent implements OnInit {
     //this.model.set(this.selectedNode.data, 'key', this.data.key);
     //this.model.set(this.selectedNode.data, 'color', this.data.color);
     //this.model.set(this.selectedNode.part, 'width', 100);
+    this.parentmodel.set(this.selectedNode.data, 'group', "ShopFloor");
 
     this.parentmodel.commitTransaction();
     this.selectedNode=null;
@@ -71,6 +72,7 @@ export class InspectorComponent implements OnInit {
       console.log(this.parentmodel.toJson() )
       this.parentmodel.startTransaction();
       this.parentmodel.set(this.selectedNode.data, 'size', this.shopSize);
+
       this.parentmodel.commitTransaction();
 
 

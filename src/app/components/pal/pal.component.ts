@@ -30,17 +30,34 @@ export class PalComponent implements OnInit {
     
 //
     this.palette.model= $(go.Model)
-    this.palette.model.addNodeDataCollection([{key:'veg',color:'green', fig: "Rectangle"},
-    {key:'fruits',color:'yellow', fig: "Rectangle"},
-    {key:'milk',color:'white', fig: "Rectangle"},
-    {key:'meds',color:'blue', fig: "Rectangle"},
-    {key:'infant',color:'pink', fig: "Rectangle"},
-    {key:'coffee',color:'brown', fig: "Rectangle"},
-    {key:'water',color:'aqua', fig: "Rectangle"},
-    {key:'bakery',color:'orange', fig: "Rectangle"},
-    {key:'kitchen',color:'purple', fig: "Rectangle"},
-    {key:'till ',color:'orange', fig: "Ellipse"},
-  {key:'snacks',color:'orange', fig: "Rectangle"}])
+    this.palette.model.addNodeDataCollection([
+      {key:'groceries',color:'green', fig: "Rectangle"},
+    {key:'confectionary',color:'pink', fig: "Rectangle"},
+    {key:'dairy',color:'rgb(255,248,220)', fig: "Rectangle"},
+    {key:'freezer',color:'rgb(135,206,250)', fig: "Rectangle"},
+    {key:'general Merchandise',color:'orange', fig: "Rectangle"},
+    {key:'liquor',color:'red', fig: "Rectangle"},
+    {key:'produce',color:'rgba(175, 231, 110, 1)', fig: "Rectangle"},
+    {key:'meat',color:'rgb(231,141,113)', fig: "Rectangle"},
+
+    {key:'bakery',color:'rgb(218,165,32)', fig: "Rectangle"},
+    {key:'deli',color:'rgb(173, 108, 29)', fig: "Rectangle"},
+
+  {key:'sea food',color:'rgb(176,196,222)', fig: "Rectangle"},
+  {key:'pharmacy',color:'rgb(29, 173, 149)', fig: "Rectangle"},
+  {key:'grab and go',color:'rgb(200, 237, 12)', fig: "Rectangle"},
+
+  {key:'ATM',color:'rgb(169, 160, 219)', fig: "Rectangle"},
+  {key:'till',color:'orange', fig: "Rectangle"},
+  {key:'Help',color:'orange', fig: "Ellipse"},
+  {key:'Flower',color:'yellow', fig: "Rectangle"},
+  {key:'exit area',color:'gold', fig: "Rectangle"},
+  {key:'impulse',color:'salmon', fig: "Rectangle"}//240, 87, 10
+
+
+
+
+])
   }
 
 }
