@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-inspector',
   templateUrl: './inspector.component.html',
   styleUrls: ['./inspector.component.css']
 })
-export class InspectorComponent implements OnInit {
+export class InspectorComponent implements AfterViewInit {
   @Input() public selectedNode: go.Node;
   @Input() public parentmodel: go.Model;
-  // scaling factor 10 for display.  Each 1 smallest square is 1 meter;
+  // scaling factor 10 for display.   1 smallest square is 1 meter;
   public data = {
     key: null,
     color: null,
@@ -21,8 +21,11 @@ export class InspectorComponent implements OnInit {
   shopSize = '';
   constructor() { }
 
-  ngOnInit(): void {
 
+
+  ngAfterViewInit(): void {
+    // console.log( this.parentmodel.nodeDataArray )
+    // percentage calculation will be done here.
   }
 
   public onCommitForm() {

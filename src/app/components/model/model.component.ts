@@ -63,7 +63,7 @@ export class ModelComponent implements OnInit {
       { key: 'ATM', color: 'rgb(169, 160, 219)', fig: 'Rectangle', loc: new go.Point(0, 450), h: 46, w: 51,
       group: 'ShopFloor', cat: 'nonshopping' },
       { key: 'Flower', color: 'yellow', fig: 'Rectangle', loc: new go.Point(0, 350), h: 49, w: 47, group: 'ShopFloor', cat: 'flowers' },
-      { key: 'produce', color: 'rgba(175, 231, 110, 1)', fig: 'Rectangle', loc: new go.Point(0, 120), h: 174, w: 48,
+      { key: 'produce', color: 'rgba(175, 231, 110, 1)', fig: 'Rectangle', loc: new go.Point(0, 150), h: 174, w: 48,
       group: 'ShopFloor', cat: 'produce' },
       { key: 'bakery1', color: 'rgb(218,165,32)', fig: 'Rectangle', loc: new go.Point(0, 50), h: 100, w: 50,
       group: 'ShopFloor', cat: 'bakery' },
