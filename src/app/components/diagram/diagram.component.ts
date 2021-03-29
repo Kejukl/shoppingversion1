@@ -53,9 +53,12 @@ export class DiagramComponent implements OnInit {
     $(go.Node, 
       "Auto", // the Shape automatically fits around the TextBlock
     { resizable: true, resizeObjectName:"SHAPE1"},
-    {name:"SHAPE1"},
+    {name:"SHAPE1"}, 
+    //h and w have decimeter equivalency
     new go.Binding("height", "h").makeTwoWay(),
     new go.Binding("width", "w").makeTwoWay(),
+    new go.Binding("cat","cat").makeTwoWay(),
+
     { rotatable : true,rotateObjectName:"SHAPE1"},
     //new go.Binding("resizable","resize"),
     new go.Binding("location", "loc").makeTwoWay(),
@@ -69,7 +72,7 @@ export class DiagramComponent implements OnInit {
     //alignment: go.Spot.TopCenter, 
     //alignmentFocus: go.Spot.TopCenter
   },
-    new go.Binding("text", "key"),{stroke:"darkslateblue"}),
+    new go.Binding("text", "key"),new go.Binding("text", "key"),{stroke:"darkslateblue"}),
     );
     this.diagram.model=this.parentmodel
     this.diagram.allowDrop = true;

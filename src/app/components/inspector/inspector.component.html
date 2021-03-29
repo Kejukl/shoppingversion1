@@ -1,14 +1,14 @@
 <h4  >Inspect item </h4>
 <form *ngIf="selectedNode && selectedNode.data.key && selectedNode.data.key != 'ShopFloor'" (ngSubmit)="onCommitForm()">
-     <span>position X: {{selectedNode.part.location.x}} dm</span> <br>
-     <span>position Y: {{selectedNode.data.loc.y}} dm</span> <br>
-     
     name: <input name="key" [(ngModel)]="data.key" placeholder="{{selectedNode.data.key}}"> <br>
     color: <input name="color" [(ngModel)]="data.color" placeholder="{{selectedNode.data.color}}" /><br>
-    aisle length: <input name="w" [(ngModel)]="data.width" placeholder="{{selectedNode.data.w}}" /> dm<br>
-    aisle depth: <input name="h" [(ngModel)]="data.height" placeholder="{{selectedNode.data.h}}" />dm<br>
-    angle: <input name="angle" [(ngModel)]="data.angle" placeholder="{{selectedNode.data.angle}}" />Degree<br>
-    Area:{{selectedNode.data.w*selectedNode.data.h/10000}} m<sup>2</sup><br>
+    aisle length: <input name="w" [(ngModel)]="data.width" placeholder="{{selectedNode.data.w/10}}" />m<br>
+    aisle depth: <input name="h" [(ngModel)]="data.height" placeholder="{{selectedNode.data.h/10}}" />m<br>
+    angle: <input name="angle" [(ngModel)]="data.angle" placeholder="{{selectedNode.data.angle}}" /> put Degree symbol here<br>
+    cat: <input name="cat" [(ngModel)]="data.cat" placeholder="{{selectedNode.data.cat}}" /><br>
+    <span>position X: {{selectedNode.part.location.x}} m</span> <br>
+    <span>position Y: {{selectedNode.data.loc.y}} m</span> <br>
+    Area:{{selectedNode.data.w*selectedNode.data.h/100}} m<sup>2</sup><br>
 
     <button type="submit">change item details</button>
   </form>

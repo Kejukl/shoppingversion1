@@ -8,6 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class InspectorComponent implements OnInit {
   @Input() public selectedNode:go.Node;
   @Input() public parentmodel:go.Model;
+  
+  //scaling factor 10 for display.  Each 1 smallest square is 1 meter;
+ 
 
   public data = {
     key: null,
@@ -16,7 +19,7 @@ export class InspectorComponent implements OnInit {
     width:null,
     height:null,
     angle:null,
-    items:null
+    cat:null
   };
   shopSize:string = ''
   constructor() { }
@@ -37,15 +40,21 @@ export class InspectorComponent implements OnInit {
     }
     if(this.data.width!=null){
       console.log(this.data.width)
-      this.parentmodel.set(this.selectedNode.part, 'width', +this.data.width);
+      this.parentmodel.set(this.selectedNode.part, 'width', +this.data.width*10);
+
     }
     if(this.data.height!=null){
       console.log(this.data.height)
-      this.parentmodel.set(this.selectedNode.part, 'height', +this.data.height);
+      this.parentmodel.set(this.selectedNode.part, 'height', +this.data.height*10);
+
     }
     if(this.data.angle!=null){
       console.log(this.data.angle)
       this.parentmodel.set(this.selectedNode.part, 'angle', +this.data.angle);
+    }
+    if(this.data.cat!=null){
+      console.log(this.data.cat)
+      this.parentmodel.set(this.selectedNode.data, 'cat', this.data.cat);
     }
 
     //this.model.set(this.selectedNode.data, 'key', this.data.key);
@@ -62,7 +71,7 @@ export class InspectorComponent implements OnInit {
       width:null,
       height:null,
       angle:null,
-      items:null
+      cat:null
     };
   }
 
@@ -79,6 +88,8 @@ export class InspectorComponent implements OnInit {
     }
     
   }
+
+
 
 
 
