@@ -17,6 +17,7 @@ export class DiagramComponent implements AfterViewInit, OnChanges {
   public nodeClicked = new EventEmitter();
   nullNode: go.Node;
 
+
   constructor() { }
 
 /*   ngOnInit() {
@@ -157,8 +158,11 @@ export class DiagramComponent implements AfterViewInit, OnChanges {
     if ( this.diagram ) {
       this.diagram.model = this.parentmodel;
     }
-
+  
   }
+
+
+
 
 }
 

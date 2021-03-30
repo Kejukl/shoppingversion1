@@ -6,10 +6,21 @@
     aisle depth: <input name="h" [(ngModel)]="data.height" placeholder="{{selectedNode.data.h/10}}" />m<br>
     angle: <input name="angle" [(ngModel)]="data.angle" placeholder="{{selectedNode.data.angle}}" /> put Degree symbol here<br>
     cat: <input name="cat" [(ngModel)]="data.cat" placeholder="{{selectedNode.data.cat}}" /><br>
+
     <span>position X: {{selectedNode.part.location.x}} m</span> <br>
     <span>position Y: {{selectedNode.data.loc.y}} m</span> <br>
-    Area:{{selectedNode.data.w*selectedNode.data.h/100}} m<sup>2</sup><br>
-
+    Area of selection:{{ selectedNode.data.w * selectedNode.data.h / 100 }} m<sup>2</sup><br>
+    % Area dedicated for {{selectedNode.data.cat}}: {{ (cat[ selectedNode.data.cat ]*100/totalArea).toFixed(2)  }} <br>
+    % New area for {{selectedNode.data.cat}} : {{ 
+      (( 
+        cat[ selectedNode.data.cat ] +
+        (selectedNode.data.w * selectedNode.data.h * 0.01 - iW * iH)
+      )*100 /
+      ( 
+        totalArea +
+        (selectedNode.data.w * selectedNode.data.h * 0.01 - iW * iH)
+      )).toFixed(2)
+    }}
     <button type="submit">change item details</button>
   </form>
 

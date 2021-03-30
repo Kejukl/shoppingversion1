@@ -8,6 +8,11 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 export class InspectorComponent implements AfterViewInit {
   @Input() public selectedNode: go.Node;
   @Input() public parentmodel: go.Model;
+  cat: any = {};
+  totalArea = 0;
+  iH = 0; // initial height
+  iW = 0; // initial width
+  iA = 0; //initial area of selected node
   // scaling factor 10 for display.   1 smallest square is 1 meter;
   public data = {
     key: null,
@@ -26,7 +31,21 @@ export class InspectorComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     // console.log( this.parentmodel.nodeDataArray )
     // percentage calculation will be done here.
+    this.sharePercent();
   }
+
+  ngOnChanges() {
+    if ( this.selectedNode != null ) {
+      console.log( 'I am changing' )
+
+      this.iH = this.selectedNode.data.h * 0.1;
+      this.iW = this.selectedNode.data.w * 0.1;
+    }
+  }
+
+
+
+  
 
   public onCommitForm() {
     // console.log(this.data.key,this.data.color)
@@ -55,6 +74,7 @@ export class InspectorComponent implements AfterViewInit {
     this.parentmodel.set( this.selectedNode.data, 'group', 'ShopFloor' );
     this.parentmodel.commitTransaction();
     this.selectedNode = null;
+    this.sharePercent();
     this.data = {
       key: null,
       color: null,
@@ -75,6 +95,24 @@ export class InspectorComponent implements AfterViewInit {
       this.parentmodel.commitTransaction();
     }
 
+  }
+
+  sharePercent() {
+    this.cat = {}
+    this.totalArea = 0;
+    if ( this.parentmodel ) {
+      this.parentmodel.nodeDataArray.forEach( item => {
+        if ( item.cat && this.cat[ item.cat] ) {
+          this.cat[ item.cat] = item.h * item.w * 0.01 + this.cat[ item.cat];
+          this.totalArea = this.totalArea + ( item.h * item.w * 0.01 );
+        } else {
+          if ( item.cat ) {
+            this.cat[ item.cat ] = item.h * item.w * 0.01;
+            this.totalArea = this.totalArea + ( item.h * item.w * 0.01 );
+          }
+        }
+      });
+   }
   }
 
 }
