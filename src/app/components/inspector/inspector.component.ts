@@ -1,18 +1,18 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-inspector',
   templateUrl: './inspector.component.html',
   styleUrls: ['./inspector.component.css']
 })
-export class InspectorComponent implements AfterViewInit {
+export class InspectorComponent implements AfterViewInit, OnChanges {
   @Input() public selectedNode: go.Node;
   @Input() public parentmodel: go.Model;
   cat: any = {};
   totalArea = 0;
   iH = 0; // initial height
   iW = 0; // initial width
-  iA = 0; //initial area of selected node
+  iA = 0; // initial area of selected node
   // scaling factor 10 for display.   1 smallest square is 1 meter;
   public data = {
     key: null,
@@ -29,23 +29,15 @@ export class InspectorComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    // console.log( this.parentmodel.nodeDataArray )
-    // percentage calculation will be done here.
     this.sharePercent();
   }
 
   ngOnChanges() {
     if ( this.selectedNode != null ) {
-      console.log( 'I am changing' )
-
       this.iH = this.selectedNode.data.h * 0.1;
       this.iW = this.selectedNode.data.w * 0.1;
     }
   }
-
-
-
-  
 
   public onCommitForm() {
     // console.log(this.data.key,this.data.color)
@@ -98,7 +90,7 @@ export class InspectorComponent implements AfterViewInit {
   }
 
   sharePercent() {
-    this.cat = {}
+    this.cat = {};
     this.totalArea = 0;
     if ( this.parentmodel ) {
       this.parentmodel.nodeDataArray.forEach( item => {

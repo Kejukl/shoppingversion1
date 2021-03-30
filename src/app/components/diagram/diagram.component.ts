@@ -158,11 +158,8 @@ export class DiagramComponent implements AfterViewInit, OnChanges {
     if ( this.diagram ) {
       this.diagram.model = this.parentmodel;
     }
-  
+
   }
-
-
-
 
 }
 
